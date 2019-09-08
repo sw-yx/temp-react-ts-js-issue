@@ -1,10 +1,13 @@
-this is a repro of a TS - JS interop issue - inferred properties in JS are inferred as required, but there is no way to opt out of it.
+This repo is meant as a repro indicative of some JS-to-TS conversion issues - where converting a single file is impossible without converting yet more files, causing yak shaving.
+
+This is a bad TS - JS interop issue - inferred properties in JS are inferred as required, but there is no way to opt out of it.
 
 - we have `allowJs: true`
 - `index.tsx` imports `Button.js`
 - `Button.js` has a `Button` component with a destructured prop `color`. this is inferred as a REQUIRED prop... but actually is optional because of code lower down
+- my goal is to be able to work on `index.tsx` with NO CHANGE to `Button.js`, and have a successful TS build
 
-run `yarn ts` to see failure. This repo is meant as a repro indicative of some JS-to-TS conversion issues - where converting a single file is impossible without converting yet more files, causing yak shaving.
+run `yarn ts` to see failure.
 
 ```bash
 $ tsc
